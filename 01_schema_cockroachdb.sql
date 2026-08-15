@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS user_preferences (
     is_active BOOL DEFAULT true,
     created_at TIMESTAMP DEFAULT now(),
     updated_at TIMESTAMP DEFAULT now(),
+    UNIQUE (user_id, preference_type, preference_key),
     INDEX idx_user_preferences (user_id, preference_type),
     INDEX idx_active_preferences (user_id, is_active)
 );
@@ -94,6 +95,7 @@ CREATE TABLE IF NOT EXISTS ai_memory_context (
     last_accessed TIMESTAMP DEFAULT now(),
     access_count INT DEFAULT 1,
     created_at TIMESTAMP DEFAULT now(),
+    UNIQUE (user_id),
     INDEX idx_user_memory (user_id)
 );
 
